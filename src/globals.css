@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +7,7 @@
   :root { --background: 45 33% 97%; --foreground: 160 43% 16%; --border: 145 18% 87%; --radius: 1rem; }
   * { @apply border-border; }
   html { scroll-behavior: smooth; }
-  body { @apply bg-background text-foreground; margin: 0; font-family: 'DM Sans', sans-serif; }
+  body { @apply bg-background text-foreground; margin: 0; font-family: 'Poppins', sans-serif; }
   button, a { -webkit-tap-highlight-color: transparent; }
 }
 
@@ -17,7 +17,7 @@
 .brand-icon svg { transform:rotate(14deg); }
 .eyebrow { display:flex; align-items:center; gap:9px; color:#69877d; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
 .eyebrow-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:#cb805f; }
-em { color:#2f7d68; font-family:'Playfair Display', serif; font-weight:500; }
+em { color:#2f7d68; font-family:'Poppins', sans-serif; font-weight:500; }
 .hero-shell { position:relative; overflow:hidden; }
 .hero-shell:before { content:''; position:absolute; width:470px; height:470px; right:-180px; top:60px; border-radius:50%; background:#e8f0e7; opacity:.7; }
 .primary-button { display:inline-flex; align-items:center; justify-content:center; gap:18px; border:0; border-radius:999px; padding:17px 23px 17px 27px; color:#fff; background:#2f7d68; box-shadow:0 12px 25px rgba(47,125,104,.18); font-weight:700; transition:transform .2s, box-shadow .2s; }
