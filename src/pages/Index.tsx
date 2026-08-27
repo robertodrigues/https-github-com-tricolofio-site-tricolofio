@@ -6,6 +6,7 @@ import {
   ChevronRight,
   Clock3,
   Droplets,
+  Instagram,
   Leaf,
   MessageCircle,
   ShieldCheck,
@@ -257,26 +258,26 @@ Gostaria de agendar minha consulta.`;
                 alt="Profissional de tricologia usando jaleco branco"
               />
               <div className="photo-caption">
-                <span className="caption-icon">
-                  <Sparkles size={14} />
-                </span>
                 <span>
                   <strong>
-                    Cuidado que começa
+                    Biomédica Esteta Tricologista CRBM16081
                     <br />
-                    com escuta.
+                    Especialista em Estímulo de Crescimento Capilar e de
+                    Sobrancelhas.
                   </strong>
                 </span>
               </div>
             </div>
-            <div className="leaf-note">
-              <Leaf size={17} />
-              <span>
-                Um olhar para
-                <br />
-                <strong>o todo.</strong>
-              </span>
-            </div>
+            <a
+              href="https://www.instagram.com/edilaine_albuquerque"
+              target="_blank"
+              rel="noreferrer"
+              className="leaf-note"
+              aria-label="Instagram de Edilaine Albuquerque"
+            >
+              <Instagram size={17} />
+              <span>@edilaine_albuquerque</span>
+            </a>
           </div>
 
           <div className="hero-footer lg:col-span-2">
