@@ -62,7 +62,7 @@ import {
 
   return <main className="min-h-screen bg-[#fbfaf6] text-[#183c35] selection:bg-[#dcece2]">
     <header className="absolute left-0 right-0 top-0 z-10 mx-auto flex max-w-6xl items-center justify-between px-5 py-6 lg:px-10">
-      <div className="brand-mark"><span className="brand-icon"><Leaf size={16} strokeWidth={2.5} /></span><span>tricolofio</span></div>
+      <div className="brand-mark"><img src="/logo-tricolofio.png" alt="Tricolofio Tricologia" /></div>
       {stage === "quiz" && <span className="text-xs font-semibold tracking-[.16em] text-[#67837a] uppercase">Avaliação gratuita</span>}
     </header>
 
