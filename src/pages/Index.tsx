@@ -13,6 +13,7 @@ import {
   Sprout,
   UserRound,
 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
  type Stage = "landing" | "quiz" | "processing" | "result";
  type Answer = string;
@@ -33,10 +34,45 @@ import {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, Answer>>({});
   const CurrentIcon = questions[step].icon;
+  const leadStorageKey = "tricolofio_quiz_lead_id";
 
-  const startQuiz = () => { setStage("quiz"); setStep(0); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const startQuiz = () => {
+    setAnswers({});
+    setStep(0);
+    setStage("quiz");
+    try { localStorage.removeItem(leadStorageKey); } catch { /* localStorage may be unavailable */ }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const updateLead = (status: "concluido" | "whatsapp_clicado", leadAnswers: Record<string, Answer>, leadResult?: string) => {
+    let leadId: string | null = null;
+    try { leadId = localStorage.getItem(leadStorageKey); } catch { return; }
+    if (!leadId) return;
+    void Promise.resolve(supabase.from("quiz_leads").update({ status, respostas: leadAnswers, ...(leadResult ? { resultado: leadResult } : {}) }).eq("id", leadId)).catch(() => undefined);
+  };
+
+  const trackQuizStart = (firstAnswer: Answer) => {
+    let existingLeadId: string | null = null;
+    try { existingLeadId = localStorage.getItem(leadStorageKey); } catch { return; }
+    if (existingLeadId) return;
+    const leadId = crypto.randomUUID();
+    try { localStorage.setItem(leadStorageKey, leadId); } catch { return; }
+    const params = new URLSearchParams(window.location.search);
+    void Promise.resolve(supabase.from("quiz_leads").insert({
+      id: leadId,
+      status: "iniciado",
+      respostas: { tempo: firstAnswer },
+      utm_source: params.get("utm_source"),
+      utm_medium: params.get("utm_medium"),
+      utm_campaign: params.get("utm_campaign"),
+      user_agent: navigator.userAgent,
+    })).catch(() => undefined);
+  };
+
+  const markWhatsAppClicked = () => updateLead("whatsapp_clicado", answers, result.title);
   const choose = (answer: string) => {
     const current = questions[step];
+    if (step === 0) trackQuizStart(answer);
     const nextAnswers = { ...answers, [current.id]: answer };
     setAnswers(nextAnswers);
     if (step < questions.length - 1) setStep(step + 1);
@@ -47,7 +83,10 @@ import {
 
   useEffect(() => {
     if (stage !== "processing") return;
-    const timer = window.setTimeout(() => setStage("result"), 2400);
+    const timer = window.setTimeout(() => {
+      updateLead("concluido", answers, result.title);
+      setStage("result");
+    }, 2400);
     return () => window.clearTimeout(timer);
   }, [stage]);
 
@@ -85,7 +124,7 @@ import {
 
     {stage === "processing" && <section className="flex min-h-screen items-center justify-center px-5 pt-16"><div className="max-w-md text-center animate-rise"><div className="loader-orbit mx-auto"><div className="loader-core"><Leaf size={25} /></div></div><span className="eyebrow mt-9">Só mais um instante</span><h2 className="mt-5 text-4xl font-medium leading-tight tracking-[-.04em]">Estamos montando um olhar <em>para você.</em></h2><p className="mt-5 leading-7 text-[#71877f]">Cruzando suas respostas com padrões capilares e preparando sua orientação inicial.</p><div className="processing-steps mt-10"><span className="active"><Check size={13} /> Respostas recebidas</span><span><Sparkles size={13} /> Organizando seu perfil</span></div></div></section>}
 
-    {stage === "result" && <section className="result-shell mx-auto min-h-screen max-w-5xl px-5 pb-16 pt-28 lg:px-10"><div className="animate-rise"><div className="result-top"><div><span className="eyebrow"><span className="eyebrow-dot" /> Sua leitura inicial</span><h2 className="mt-5 max-w-2xl text-4xl font-medium leading-[1.07] tracking-[-.05em] sm:text-6xl">Existe um caminho mais claro para cuidar de você.</h2></div><div className="result-badge"><Sparkles size={17} /> Perfil educativo</div></div><div className="result-grid mt-12"><div className="profile-card"><span className="card-label">Seu perfil sugere</span><h3>{result.title}</h3><p>{result.description}</p><div className="profile-tags"><span>{result.accent}</span><span>avaliação individual</span></div></div><div className="timeline-card"><div className="flex items-start justify-between"><div><span className="card-label">Sem acompanhamento</span><h3>Como observar a evolução</h3></div><span className="timeline-period">12 — 24 meses</span></div><div className="timeline-chart"><div className="chart-axis"><span>densidade percebida</span><span>tempo</span></div><svg viewBox="0 0 500 165" role="img" aria-label="Linha ilustrativa de evolução da densidade percebida"><path d="M0 34 C90 35 120 54 180 65 S280 86 335 110 S420 132 500 144" fill="none" stroke="#c47c5e" strokeWidth="3" strokeLinecap="round" /><path d="M0 34 C90 35 120 54 180 65 S280 86 335 110 S420 132 500 144 L500 165 L0 165Z" fill="#f1dcd0" opacity=".45" /><circle cx="0" cy="34" r="5" fill="#c47c5e" /><circle cx="500" cy="144" r="5" fill="#c47c5e" /></svg><div className="chart-labels"><span>agora</span><span>12 meses</span><span>24 meses</span></div></div><p className="mt-5 text-xs leading-5 text-[#83978f]">Uma representação educativa, não uma previsão ou diagnóstico. Cada pessoa responde de uma forma.</p></div></div><div className="cta-card mt-5"><div className="cta-copy"><span className="cta-spark"><MessageCircle size={20} /></span><div><h3>Sua avaliação completa está pronta.</h3><p>Converse com nossa equipe para entender as causas prováveis e os próximos passos para o seu caso.</p></div></div><a href={whatsappUrl} target="_blank" rel="noreferrer" className="whatsapp-button"><MessageCircle size={21} fill="currentColor" /> Receber no WhatsApp <ArrowRight size={17} /></a></div><p className="disclaimer"><ShieldCheck size={14} /> Esta é uma categorização educativa e não substitui uma avaliação profissional.</p><button onClick={startQuiz} className="restart-link">Refazer avaliação</button></div></section>}
+    {stage === "result" && <section className="result-shell mx-auto min-h-screen max-w-5xl px-5 pb-16 pt-28 lg:px-10"><div className="animate-rise"><div className="result-top"><div><span className="eyebrow"><span className="eyebrow-dot" /> Sua leitura inicial</span><h2 className="mt-5 max-w-2xl text-4xl font-medium leading-[1.07] tracking-[-.05em] sm:text-6xl">Existe um caminho mais claro para cuidar de você.</h2></div><div className="result-badge"><Sparkles size={17} /> Perfil educativo</div></div><div className="result-grid mt-12"><div className="profile-card"><span className="card-label">Seu perfil sugere</span><h3>{result.title}</h3><p>{result.description}</p><div className="profile-tags"><span>{result.accent}</span><span>avaliação individual</span></div></div><div className="timeline-card"><div className="flex items-start justify-between"><div><span className="card-label">Sem acompanhamento</span><h3>Como observar a evolução</h3></div><span className="timeline-period">12 — 24 meses</span></div><div className="timeline-chart"><div className="chart-axis"><span>densidade percebida</span><span>tempo</span></div><svg viewBox="0 0 500 165" role="img" aria-label="Linha ilustrativa de evolução da densidade percebida"><path d="M0 34 C90 35 120 54 180 65 S280 86 335 110 S420 132 500 144" fill="none" stroke="#c47c5e" strokeWidth="3" strokeLinecap="round" /><path d="M0 34 C90 35 120 54 180 65 S280 86 335 110 S420 132 500 144 L500 165 L0 165Z" fill="#f1dcd0" opacity=".45" /><circle cx="0" cy="34" r="5" fill="#c47c5e" /><circle cx="500" cy="144" r="5" fill="#c47c5e" /></svg><div className="chart-labels"><span>agora</span><span>12 meses</span><span>24 meses</span></div></div><p className="mt-5 text-xs leading-5 text-[#83978f]">Uma representação educativa, não uma previsão ou diagnóstico. Cada pessoa responde de uma forma.</p></div></div><div className="cta-card mt-5"><div className="cta-copy"><span className="cta-spark"><MessageCircle size={20} /></span><div><h3>Sua avaliação completa está pronta.</h3><p>Converse com nossa equipe para entender as causas prováveis e os próximos passos para o seu caso.</p></div></div><a href={whatsappUrl} target="_blank" rel="noreferrer" onClick={markWhatsAppClicked} className="whatsapp-button"><MessageCircle size={21} fill="currentColor" /> Receber no WhatsApp <ArrowRight size={17} /></a></div><p className="disclaimer"><ShieldCheck size={14} /> Esta é uma categorização educativa e não substitui uma avaliação profissional.</p><button onClick={startQuiz} className="restart-link">Refazer avaliação</button></div></section>}
   </main>;
  };
 
