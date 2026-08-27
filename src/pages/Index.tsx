@@ -19,12 +19,12 @@ import {
 
  const questions = [
   { id: "tempo", eyebrow: "Seu momento", title: "Há quanto tempo você percebe a queda?", options: ["Há menos de 3 meses", "Entre 3 e 12 meses", "Há mais de 1 ano"], icon: Clock3 },
-  { id: "tipo", eyebrow: "Como acontece", title: "Como você percebe essa queda?", options: ["Fios inteiros, com a raiz", "Afinamento gradual", "Falhas em áreas específicas"], icon: Sprout },
-  { id: "couro", eyebrow: "Seu couro cabeludo", title: "Você percebe algum desses sinais?", options: ["Coceira, oleosidade ou descamação", "Não percebo nada disso", "Às vezes, de forma leve"], icon: Droplets },
-  { id: "regiao", eyebrow: "Onde aparece", title: "Onde você percebe mais a mudança?", options: ["Entradas ou linha frontal", "Coroa e topo da cabeça", "Queda mais espalhada"], icon: UserRound },
-  { id: "hormonal", eyebrow: "Seu contexto", title: "Passou por alguma mudança recente?", options: ["Estresse, pós-parto ou mudança hormonal", "Não passei por mudanças assim", "Não tenho certeza"], icon: Leaf },
-  { id: "exames", eyebrow: "Seu histórico", title: "Fez exames de tireoide, ferritina ou hormonais no último ano?", options: ["Sim", "Não"], icon: ShieldCheck },
-  { id: "tentativas", eyebrow: "Sua jornada", title: "Você já tentou algum cuidado ou tratamento?", options: ["Shampoo ou cuidados tópicos", "Finasterida ou minoxidil", "Ainda não tentei"], icon: Sparkles },
+  { id: "tipo", eyebrow: "Como está o seu cabelo?", title: "Como está o seu cabelo?", options: ["Com queda intensa, com fios inteiros", "Afinamento do cabelo e percebe perda de densidade", "Falhas em áreas específicas"], icon: Sprout },
+  { id: "couro", eyebrow: "Sinais que você percebe no seu cabelo", title: "Sinais que você percebe no seu cabelo?", options: ["Oleosidade, coceira, descamação ou dor no couro cabeludo", "Só descamação", "Não percebo nada disso"], icon: Droplets },
+  { id: "regiao", eyebrow: "Onde você percebe mais mudança no seu cabelo", title: "Onde você percebe mais mudança no seu cabelo?", options: ["Falhas nas entradas", "Couro cabeludo mais exposto no topo da cabeça", "Perda de densidade no cabelo todo"], icon: UserRound },
+  { id: "hormonal", eyebrow: "Seu contexto", title: "Passou por alguma mudança recente na sua vida?", options: ["Estresse ou mudança hormonal", "Pós-parto", "Alimentação restrita ou emagrecimento rápido", "Não passei por nada assim"], icon: Leaf },
+  { id: "exames", eyebrow: "Seu histórico", title: "Fez exames recentes para saber como está sua tireoide, taxas de vitaminas e minerais?", options: ["Sim", "Não"], icon: ShieldCheck },
+  { id: "tentativas", eyebrow: "Sua jornada", title: "Você já procurou ajuda ou realizou algum tratamento?", options: ["Sim, usando shampoo e tônicos por conta própria", "Já usei medicamento, como finasterida e minoxidil", "Ainda não tentei"], icon: Sparkles },
   { id: "idade", eyebrow: "Para fechar", title: "Qual é a sua faixa etária?", options: ["Até 29 anos", "30 a 44 anos", "45 anos ou mais"], icon: UserRound },
  ] as const;
 
@@ -52,8 +52,8 @@ import {
   }, [stage]);
 
   const result = useMemo(() => {
-    if (answers.hormonal === "Estresse, pós-parto ou mudança hormonal") return { title: "Padrão compatível com eflúvio telógeno", description: "Seu perfil reúne sinais frequentemente associados a períodos de estresse ou alterações do organismo. Esse tipo de queda costuma ser difuso e pode aparecer algum tempo depois do gatilho.", accent: "fatores do organismo" };
-    if (answers.regiao === "Entradas ou linha frontal" || answers.tipo === "Falhas em áreas específicas") return { title: "Padrão de atenção concentrada", description: "As respostas indicam uma mudança mais localizada. Uma avaliação cuidadosa ajuda a entender o que está acontecendo e quais fatores podem estar envolvidos.", accent: "áreas específicas" };
+    if (answers.hormonal === "Estresse ou mudança hormonal" || answers.hormonal === "Pós-parto") return { title: "Padrão compatível com eflúvio telógeno", description: "Seu perfil reúne sinais frequentemente associados a períodos de estresse ou alterações do organismo. Esse tipo de queda costuma ser difuso e pode aparecer algum tempo depois do gatilho.", accent: "fatores do organismo" };
+    if (answers.regiao === "Falhas nas entradas" || answers.tipo === "Falhas em áreas específicas") return { title: "Padrão de atenção concentrada", description: "As respostas indicam uma mudança mais localizada. Uma avaliação cuidadosa ajuda a entender o que está acontecendo e quais fatores podem estar envolvidos.", accent: "áreas específicas" };
     return { title: "Padrão compatível com afinamento difuso", description: "Seu perfil sugere uma redução gradual de densidade, um padrão comum que pode estar associado a diferentes fatores. Investigar cedo ajuda a cuidar com mais clareza.", accent: "afinamento gradual" };
   }, [answers]);
 
