@@ -57,7 +57,7 @@ import {
     return { title: "Padrão compatível com afinamento difuso", description: "Seu perfil sugere uma redução gradual de densidade, um padrão comum que pode estar associado a diferentes fatores. Investigar cedo ajuda a cuidar com mais clareza.", accent: "afinamento gradual" };
   }, [answers]);
 
-  const whatsappMessage = `Olá! Fiz minha avaliação capilar no site do Tricolofio.\nResultado: ${result.title}, com percepção de ${answers.tempo?.toLowerCase() || "queda capilar"}.\nGostaria de agendar minha consulta.`;
+  const whatsappMessage = `Olá! Fiz minha avaliação capilar no site do Tricolofio.\n\nEste é um resumo do que se passa comigo:\n\n• Há quanto tempo percebo a queda: ${answers.tempo || "não informado"}\n• Como está o meu cabelo: ${answers.tipo || "não informado"}\n• Sinais que percebo: ${answers.couro || "não informado"}\n• Onde percebo mais mudança: ${answers.regiao || "não informado"}\n• Mudança recente na minha vida: ${answers.hormonal || "não informado"}\n• Exames recentes: ${answers.exames || "não informado"}\n• Ajuda ou tratamentos anteriores: ${answers.tentativas || "não informado"}\n• Faixa etária: ${answers.idade || "não informado"}\n\nResultado educativo: ${result.title}.\n${result.description}\n\nGostaria de agendar minha consulta.`;
   const whatsappUrl = `https://wa.me/5561993971572?text=${encodeURIComponent(whatsappMessage)}`;
 
   return <main className="min-h-screen bg-[#fbfaf6] text-[#183c35] selection:bg-[#dcece2]">
