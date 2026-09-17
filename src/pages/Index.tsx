@@ -27,7 +27,7 @@ const questions = [
   { id: "hormonal", eyebrow: "Seu contexto", title: "Você passou por alguma mudança recente?", options: ["Estresse intenso ou alteração hormonal", "Pós-parto", "Emagrecimento rápido ou dieta restritiva", "Não passei por nenhuma dessas situações"], icon: Leaf },
   { id: "exames", eyebrow: "Seu histórico", title: "Nos últimos 12 meses você avaliou exames como tireoide, ferro, vitaminas ou minerais?", options: ["Sim", "Não"], icon: ShieldCheck },
   { id: "tentativas", eyebrow: "Sua jornada", title: "Você já tentou tratar essa queda?", options: ["Sim, apenas shampoos ou tônicos", "Sim, com medicamentos prescritos", "Nunca fiz tratamento"], icon: Sparkles },
-  { id: "idade", eyebrow: "Para fechar", title: "Qual é sua faixa etária?", options: ["Até 29 anos", "30 a 44 anos", "45 anos ou mais"], icon: UserRound },
+  { id: "idade", eyebrow: "Para fechar", title: "Qual é a sua faixa etária?", options: ["Até 29 anos", "30 a 44 anos", "45 anos ou mais"], icon: UserRound },
   { id: "historico", eyebrow: "Seu histórico familiar", title: "Existe histórico de afinamento ou calvície na sua família?", options: ["Sim", "Não", "Não sei"], icon: ShieldCheck },
 ] as const;
 
