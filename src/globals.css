@@ -85,6 +85,19 @@ em { color:#2f7d68; font-family:'Poppins', sans-serif; font-weight:500; }
 .footer-column a:hover, .footer-column button:hover { color:#fff; }
 .footer-column button { padding:0; border:0; background:transparent; }
 .footer-bottom { display:flex; flex-direction:column; gap:8px; max-width:1152px; margin:0 auto; padding-top:20px; border-top:1px solid rgba(216,235,224,.15); color:#87a99a; font-size:10px; line-height:1.5; }
+.footer-legal-links { display:flex; flex-wrap:wrap; gap:12px 18px; }
+.footer-legal-links a { color:#b8d0c1; text-decoration:underline; text-underline-offset:3px; }
+.policy-page { min-height:100vh; padding:34px 20px 70px; color:#244c41; background:#fbfaf6; }
+.policy-wrap { max-width:780px; margin:0 auto; }
+.policy-back { display:inline-block; color:#5f8878; font-size:13px; font-weight:600; }
+.policy-logo { display:block; width:154px; height:auto; max-height:44px; margin-top:46px; object-fit:contain; border-radius:8px; }
+.policy-kicker { margin-top:35px; color:#c47c5e; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+.policy-page h1 { margin-top:12px; color:#183c35; font-size:clamp(2.25rem, 7vw, 4rem); font-weight:500; line-height:1.05; letter-spacing:-.055em; }
+.policy-updated { margin-top:14px; color:#789188; font-size:12px; }
+.policy-page section { margin-top:40px; }
+.policy-page h2 { color:#2f7d68; font-size:20px; font-weight:600; letter-spacing:-.02em; }
+.policy-page section p { margin-top:12px; color:#5c756d; font-size:15px; line-height:1.85; }
+.policy-page section a { color:#2f7d68; font-weight:600; text-decoration:underline; text-underline-offset:3px; }
 
 @keyframes spin { to { transform:rotate(360deg); } }
 @keyframes rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }

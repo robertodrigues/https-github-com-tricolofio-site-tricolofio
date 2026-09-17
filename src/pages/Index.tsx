@@ -515,7 +515,11 @@ Gostaria de agendar minha consulta.`;
         </div>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} Tricolofio Tricologia. Todos os direitos reservados.</span>
-          <span>Conteúdo educativo · Não substitui avaliação profissional</span>
+          <div className="footer-legal-links">
+            <a href="/politica-de-privacidade">Política de Privacidade</a>
+            <a href="/termos-de-uso">Termos de Uso</a>
+            <span>Conteúdo educativo · Não substitui avaliação profissional</span>
+          </div>
         </div>
       </footer>
     </main>
