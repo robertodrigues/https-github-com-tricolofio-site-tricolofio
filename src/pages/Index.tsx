@@ -20,15 +20,15 @@ type Stage = "landing" | "quiz" | "processing" | "result";
 type Answer = string;
 
 const questions = [
-  { id: "tempo", eyebrow: "Seu momento", title: "Há quanto tempo você percebe a queda?", options: ["Há menos de 3 meses", "Entre 3 e 12 meses", "Há mais de 1 ano"], icon: Clock3 },
-  { id: "tipo", eyebrow: "Como está o seu cabelo?", title: "Como está o seu cabelo?", options: ["Cai muito cabelo ao lavar ou pentear", "Meu cabelo está ficando mais fino", "Percebo falhas em uma região específica"], icon: Sprout },
-  { id: "couro", eyebrow: "Sinais que você percebe no seu cabelo", title: "Sinais que você percebe no seu cabelo?", options: ["Dor ou sensibilidade", "Oleosidade, coceira ou descamação", "Não percebo nada disso"], icon: Droplets },
-  { id: "regiao", eyebrow: "Onde você percebe mais mudança no seu cabelo", title: "Onde você percebe mais mudança no seu cabelo?", options: ["Entradas ou região frontal", "Topo da cabeça", "Perda de densidade no cabelo todo"], icon: UserRound },
-  { id: "hormonal", eyebrow: "Seu contexto", title: "Passou por alguma mudança recente na sua vida?", options: ["Estresse ou alteração hormonal", "Pós-parto", "Emagrecimento rápido", "Não passei por nada assim"], icon: Leaf },
-  { id: "exames", eyebrow: "Seu histórico", title: "Fez exames recentes para saber como está sua tireoide, taxas de vitaminas e minerais?", options: ["Sim", "Não"], icon: ShieldCheck },
-  { id: "tentativas", eyebrow: "Sua jornada", title: "Você já procurou ajuda ou realizou algum tratamento?", options: ["Sim, usando shampoo e tônicos por conta própria", "Já usei medicamento, como finasterida e minoxidil", "Ainda não tentei"], icon: Sparkles },
-  { id: "historico", eyebrow: "Seu histórico familiar", title: "Existe histórico familiar de queda ou afinamento capilar?", options: ["Sim", "Não"], icon: ShieldCheck },
-    { id: "idade", eyebrow: "Para fechar", title: "Qual é a sua faixa etária?", options: ["Até 29 anos", "30 a 44 anos", "45 anos ou mais"], icon: UserRound },
+  { id: "tempo", eyebrow: "Seu momento", title: "Há quanto tempo você percebe a queda de cabelo?", options: ["Menos de 3 meses", "Entre 3 e 12 meses", "Mais de 1 ano"], icon: Clock3 },
+  { id: "tipo", eyebrow: "O que mais chamou sua atenção?", title: "O que mais chamou sua atenção?", options: ["Cai muito cabelo ao lavar ou pentear", "Meu cabelo está ficando mais fino", "Percebo falhas em uma região específica"], icon: Sprout },
+  { id: "couro", eyebrow: "Sinais no couro cabeludo", title: "Você sente algum destes sinais no couro cabeludo?", options: ["Oleosidade excessiva", "Descamação ou coceira", "Dor ou sensibilidade", "Não percebo nenhum desses sinais"], icon: Droplets },
+  { id: "regiao", eyebrow: "Onde a mudança é mais evidente", title: "Onde a mudança é mais evidente?", options: ["Entradas ou região frontal", "Topo da cabeça", "O cabelo inteiro parece menos denso", "Não sei identificar"], icon: UserRound },
+  { id: "hormonal", eyebrow: "Seu contexto", title: "Você passou por alguma mudança recente?", options: ["Estresse intenso ou alteração hormonal", "Pós-parto", "Emagrecimento rápido ou dieta restritiva", "Não passei por nenhuma dessas situações"], icon: Leaf },
+  { id: "exames", eyebrow: "Seu histórico", title: "Nos últimos 12 meses você avaliou exames como tireoide, ferro, vitaminas ou minerais?", options: ["Sim", "Não"], icon: ShieldCheck },
+  { id: "tentativas", eyebrow: "Sua jornada", title: "Você já tentou tratar essa queda?", options: ["Sim, apenas shampoos ou tônicos", "Sim, com medicamentos prescritos", "Nunca fiz tratamento"], icon: Sparkles },
+  { id: "idade", eyebrow: "Para fechar", title: "Qual é sua faixa etária?", options: ["Até 29 anos", "30 a 44 anos", "45 anos ou mais"], icon: UserRound },
+  { id: "historico", eyebrow: "Seu histórico familiar", title: "Existe histórico de afinamento ou calvície na sua família?", options: ["Sim", "Não", "Não sei"], icon: ShieldCheck },
 ] as const;
 
 const Index = () => {
@@ -125,7 +125,7 @@ const Index = () => {
     const isRecent =
       answers.tipo === "Cai muito cabelo ao lavar ou pentear" &&
       ["Menos de 3 meses", "Entre 3 e 12 meses"].includes(answers.tempo) &&
-      ["Estresse ou alteração hormonal", "Pós-parto", "Emagrecimento rápido"].includes(answers.hormonal);
+      ["Estresse intenso ou alteração hormonal", "Pós-parto", "Emagrecimento rápido ou dieta restritiva"].includes(answers.hormonal);
 
     const reading = isLocalized
       ? { title: "Falhas localizadas", description: "Em caso de uma queda de cabelo acentuada, será nítida a perda de densidade e volume, ficando áreas específicas no couro cabeludo com falhas. Além de tratar a causa da queda, também se faz necessário estimular a região das falhas específicas para que volte a repilar.", accent: "áreas específicas" }
