@@ -216,7 +216,7 @@ Gostaria de agendar minha consulta.`;
         </div>
         {stage === "quiz" && (
           <span className="text-xs font-semibold uppercase tracking-[.16em] text-[#67837a]">
-            Avaliação gratuita
+            Avaliação online educativa gratuita
           </span>
         )}
       </header>
@@ -504,7 +504,7 @@ Gostaria de agendar minha consulta.`;
           <div className="footer-column">
             <span>Explore</span>
             <a href="#top">Início</a>
-            <button onClick={startQuiz}>Avaliação gratuita</button>
+            <button onClick={startQuiz}>Avaliação online educativa gratuita</button>
             <a href={whatsappUrl} target="_blank" rel="noreferrer">Fale conosco</a>
           </div>
           <div className="footer-column">
