@@ -509,7 +509,6 @@ Gostaria de agendar minha consulta.`;
           </div>
           <div className="footer-column">
             <span>Atendimento</span>
-            <p>Brasília e atendimento online</p>
             <p>Quadra QR 2 Módulo 1 Sala 104 - Candangolândia,<br />Brasília - DF, 71725-211</p>
             <a href="tel:+5561982520582">(61) 9 8252-0582</a>
             <a href="mailto:contato@tricolofio.com.br">contato@tricolofio.com.br</a>
