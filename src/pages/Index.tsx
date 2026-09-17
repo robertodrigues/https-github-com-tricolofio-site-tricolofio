@@ -215,7 +215,7 @@ Gostaria de agendar minha consulta.`;
           <img src="/logo-tricolofio.png" alt="Tricolofio Tricologia" />
         </div>
         {stage === "quiz" && (
-          <span className="text-xs font-semibold uppercase tracking-[.16em] text-[#67837a]">
+          <span className="text-left text-xs font-semibold uppercase tracking-[.16em] text-[#67837a]">
             Avaliação online educativa gratuita
           </span>
         )}
