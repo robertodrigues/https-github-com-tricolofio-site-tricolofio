@@ -484,6 +484,40 @@ Gostaria de agendar minha consulta.`;
           </div>
         </section>
       )}
+
+      <footer className="site-footer">
+        <div className="footer-inner">
+          <div className="footer-brand">
+            <img src="/logo-tricolofio.png" alt="Tricolofio Tricologia" />
+            <p>Cuidado especializado para você se sentir bem com o seu cabelo.</p>
+            <a
+              href="https://www.instagram.com/edilaine_albuquerque"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-social"
+              aria-label="Instagram da Tricolofio"
+            >
+              <Instagram size={17} /> @edilaine_albuquerque
+            </a>
+          </div>
+          <div className="footer-column">
+            <span>Explore</span>
+            <a href="#top">Início</a>
+            <button onClick={startQuiz}>Avaliação gratuita</button>
+            <a href={whatsappUrl} target="_blank" rel="noreferrer">Fale conosco</a>
+          </div>
+          <div className="footer-column">
+            <span>Atendimento</span>
+            <p>Brasília e atendimento online</p>
+            <p>Segunda a sexta, das 8h às 18h</p>
+            <a href="mailto:contato@tricolofio.com.br">contato@tricolofio.com.br</a>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>© {new Date().getFullYear()} Tricolofio Tricologia. Todos os direitos reservados.</span>
+          <span>Conteúdo educativo · Não substitui avaliação profissional</span>
+        </div>
+      </footer>
     </main>
   );
 };
