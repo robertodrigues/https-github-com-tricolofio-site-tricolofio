@@ -21,13 +21,14 @@ type Answer = string;
 
 const questions = [
   { id: "tempo", eyebrow: "Seu momento", title: "Há quanto tempo você percebe a queda?", options: ["Há menos de 3 meses", "Entre 3 e 12 meses", "Há mais de 1 ano"], icon: Clock3 },
-  { id: "tipo", eyebrow: "Como está o seu cabelo?", title: "Como está o seu cabelo?", options: ["Com queda intensa, com fios inteiros", "Afinamento do cabelo e percebe perda de densidade", "Falhas em áreas específicas"], icon: Sprout },
-  { id: "couro", eyebrow: "Sinais que você percebe no seu cabelo", title: "Sinais que você percebe no seu cabelo?", options: ["Oleosidade, coceira, descamação ou dor no couro cabeludo", "Só descamação", "Não percebo nada disso"], icon: Droplets },
-  { id: "regiao", eyebrow: "Onde você percebe mais mudança no seu cabelo", title: "Onde você percebe mais mudança no seu cabelo?", options: ["Falhas nas entradas", "Couro cabeludo mais exposto no topo da cabeça", "Perda de densidade no cabelo todo"], icon: UserRound },
-  { id: "hormonal", eyebrow: "Seu contexto", title: "Passou por alguma mudança recente na sua vida?", options: ["Estresse ou mudança hormonal", "Pós-parto", "Alimentação restrita ou emagrecimento rápido", "Não passei por nada assim"], icon: Leaf },
+  { id: "tipo", eyebrow: "Como está o seu cabelo?", title: "Como está o seu cabelo?", options: ["Cai muito cabelo ao lavar ou pentear", "Meu cabelo está ficando mais fino", "Percebo falhas em uma região específica"], icon: Sprout },
+  { id: "couro", eyebrow: "Sinais que você percebe no seu cabelo", title: "Sinais que você percebe no seu cabelo?", options: ["Dor ou sensibilidade", "Oleosidade, coceira ou descamação", "Não percebo nada disso"], icon: Droplets },
+  { id: "regiao", eyebrow: "Onde você percebe mais mudança no seu cabelo", title: "Onde você percebe mais mudança no seu cabelo?", options: ["Entradas ou região frontal", "Topo da cabeça", "Perda de densidade no cabelo todo"], icon: UserRound },
+  { id: "hormonal", eyebrow: "Seu contexto", title: "Passou por alguma mudança recente na sua vida?", options: ["Estresse ou alteração hormonal", "Pós-parto", "Emagrecimento rápido", "Não passei por nada assim"], icon: Leaf },
   { id: "exames", eyebrow: "Seu histórico", title: "Fez exames recentes para saber como está sua tireoide, taxas de vitaminas e minerais?", options: ["Sim", "Não"], icon: ShieldCheck },
   { id: "tentativas", eyebrow: "Sua jornada", title: "Você já procurou ajuda ou realizou algum tratamento?", options: ["Sim, usando shampoo e tônicos por conta própria", "Já usei medicamento, como finasterida e minoxidil", "Ainda não tentei"], icon: Sparkles },
-  { id: "idade", eyebrow: "Para fechar", title: "Qual é a sua faixa etária?", options: ["Até 29 anos", "30 a 44 anos", "45 anos ou mais"], icon: UserRound },
+  { id: "historico", eyebrow: "Seu histórico familiar", title: "Existe histórico familiar de queda ou afinamento capilar?", options: ["Sim", "Não"], icon: ShieldCheck },
+    { id: "idade", eyebrow: "Para fechar", title: "Qual é a sua faixa etária?", options: ["Até 29 anos", "30 a 44 anos", "45 anos ou mais"], icon: UserRound },
 ] as const;
 
 const Index = () => {
@@ -115,35 +116,29 @@ const Index = () => {
   };
 
   const result = useMemo(() => {
-    if (
-      answers.hormonal === "Estresse ou mudança hormonal" ||
-      answers.hormonal === "Pós-parto"
-    ) {
-      return {
-        title: "Padrão compatível com eflúvio telógeno",
-        description:
-          "Seu perfil reúne sinais frequentemente associados a períodos de estresse ou alterações do organismo. Esse tipo de queda costuma ser difuso e pode aparecer algum tempo depois do gatilho.",
-        accent: "fatores do organismo",
-      };
-    }
+    const isLocalized = answers.tipo === "Percebo falhas em uma região específica";
+    const isProgressive =
+      answers.tipo === "Meu cabelo está ficando mais fino" &&
+      (["Topo da cabeça", "Entradas ou região frontal"].includes(answers.regiao) ||
+        answers.tempo === "Mais de 1 ano" ||
+        answers.historico === "Sim");
+    const isRecent =
+      answers.tipo === "Cai muito cabelo ao lavar ou pentear" &&
+      ["Menos de 3 meses", "Entre 3 e 12 meses"].includes(answers.tempo) &&
+      ["Estresse ou alteração hormonal", "Pós-parto", "Emagrecimento rápido"].includes(answers.hormonal);
 
-    if (
-      answers.regiao === "Falhas nas entradas" ||
-      answers.tipo === "Falhas em áreas específicas"
-    ) {
-      return {
-        title: "Padrão de atenção concentrada",
-        description:
-          "As respostas indicam uma mudança mais localizada. Uma avaliação cuidadosa ajuda a entender o que está acontecendo e quais fatores podem estar envolvidos.",
-        accent: "áreas específicas",
-      };
-    }
+    const reading = isLocalized
+      ? { title: "Falhas localizadas", description: "Em caso de uma queda de cabelo acentuada, será nítida a perda de densidade e volume, ficando áreas específicas no couro cabeludo com falhas. Além de tratar a causa da queda, também se faz necessário estimular a região das falhas específicas para que volte a repilar.", accent: "áreas específicas" }
+      : isProgressive
+        ? { title: "Afinamento progressivo", description: "Afinamento capilar é diferente da queda capilar. O afinamento do fio vai afinando a cada ciclo e se tornando um fio miniaturizado, e assim o cabelo perde densidade e volume, ficando com áreas com falhas e o couro cabeludo mais exposto. Nessa situação deve-se levar em consideração a sensibilidade dos folículos ao agente causador, o que liga o alerta para hormônios específicos.", accent: "afinamento progressivo" }
+        : isRecent
+          ? { title: "Queda recente", description: "A queda de cabelo recente é aquela queda aguda, difusa, em que você vê fios de cabelo para todos os lados, e nesse quadro vários são os fatores que provocaram essa queda, desde um estresse, pós-parto e déficit nutricional.", accent: "queda recente" }
+          : { title: "Perfil variado", description: "Seu padrão de queda tem características variadas, o que é comum quando vários fatores se combinam. Para entender exatamente o que está acontecendo com o seu couro cabeludo e seus fios, o ideal é uma avaliação presencial com tricoscopia.", accent: "perfil variado" };
 
     return {
-      title: "Padrão compatível com afinamento difuso",
-      description:
-        "Seu perfil sugere uma redução gradual de densidade, um padrão comum que pode estar associado a diferentes fatores. Investigar cedo ajuda a cuidar com mais clareza.",
-      accent: "afinamento gradual",
+      ...reading,
+      description: `${reading.description}\n\nIsso é uma orientação educativa inicial — a avaliação completa com tricoscopia na consulta é o que vai confirmar a causa exata e indicar o caminho mais adequado para o seu caso.`,
+      warning: answers.couro === "Dor ou sensibilidade" ? "Você indicou sentir dor ou sensibilidade no couro cabeludo. Esse sinal pode sugerir um processo inflamatório e merece atenção próxima — é importante ser avaliado em consulta o quanto antes." : undefined,
     };
   }, [answers]);
 
@@ -197,6 +192,7 @@ Este é um resumo do que se passa comigo:
 • Mudança recente na minha vida: ${answers.hormonal || "não informado"}
 • Exames recentes: ${answers.exames || "não informado"}
 • Ajuda ou tratamentos anteriores: ${answers.tentativas || "não informado"}
+• Histórico familiar: ${answers.historico || "não informado"}
 • Faixa etária: ${answers.idade || "não informado"}
 
 Resultado educativo: ${result.title}.
@@ -396,7 +392,8 @@ Gostaria de agendar minha consulta.`;
               <div className="profile-card">
                 <span className="card-label">Seu perfil sugere</span>
                 <h3>{result.title}</h3>
-                <p>{result.description}</p>
+                <p className="whitespace-pre-line">{result.description}</p>
+                {result.warning && <div className="health-warning">{result.warning}</div>}
                 <div className="profile-tags">
                   <span>{result.accent}</span>
                   <span>avaliação individual</span>
