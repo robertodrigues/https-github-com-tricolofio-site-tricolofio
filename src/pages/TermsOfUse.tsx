@@ -5,15 +5,15 @@ const TermsOfUse = () => (
       <img src="/logo-tricolofio.png" alt="Tricolofio Tricologia" className="policy-logo" />
       <p className="policy-kicker">Uso responsável</p>
       <h1>Termos de Uso</h1>
-      <p className="policy-updated">Última atualização: 21 de fevereiro de 2025</p>
+      <p className="policy-updated">Última atualização: 17 de setembro de 2026</p>
 
       <section>
         <h2>1. Aceitação</h2>
-        <p>Ao acessar este site, você concorda com estes Termos de Uso e com a nossa Política de Privacidade. Caso não concorde, não utilize os recursos da plataforma.</p>
+        <p>Ao acessar este site, você concorda com estes Termos de Uso e com a nossa Política de Privacidade. Este site oferece uma avaliação capilar de caráter educativo, que não substitui consulta com profissional habilitado — mais detalhes na seção 2. Caso não concorde com estes termos, não utilize os recursos da plataforma.</p>
       </section>
       <section>
         <h2>2. Finalidade do conteúdo</h2>
-        <p>A avaliação capilar disponibilizada no site tem finalidade exclusivamente educativa e informativa. Seus resultados não constituem diagnóstico, prescrição ou promessa de resultado e não substituem avaliação realizada por profissional habilitado.</p>
+        <p>A avaliação capilar disponibilizada no site tem finalidade exclusivamente educativa e informativa. Seus resultados não constituem diagnóstico médico ou biomédico, não configuram prescrição de tratamento, não representam promessa de resultado e não substituem, em nenhuma hipótese, avaliação presencial realizada por profissional habilitado. A avaliação serve apenas como orientação inicial para apoiar a decisão de buscar atendimento especializado.</p>
       </section>
       <section>
         <h2>3. Uso adequado</h2>
