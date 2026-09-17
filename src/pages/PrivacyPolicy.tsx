@@ -5,7 +5,7 @@ const PrivacyPolicy = () => (
       <img src="/logo-tricolofio.png" alt="Tricolofio Tricologia" className="policy-logo" />
       <p className="policy-kicker">Transparência e cuidado</p>
       <h1>Política de Privacidade</h1>
-      <p className="policy-updated">Última atualização: 21 de fevereiro de 2025</p>
+      <p className="policy-updated">Última atualização: 17 de setembro de 2026</p>
 
       <section>
         <h2>1. Sobre esta política</h2>
@@ -18,7 +18,7 @@ const PrivacyPolicy = () => (
       </section>
       <section>
         <h2>3. Como usamos os dados</h2>
-        <p>Usamos os dados para apresentar a orientação inicial, responder solicitações, melhorar a experiência do site, medir campanhas publicitárias e manter a segurança da plataforma. Não vendemos seus dados pessoais.</p>
+        <p>Usamos os dados para apresentar a orientação inicial, responder solicitações, melhorar a experiência do site, medir campanhas publicitárias (exceto dados de saúde, tratados conforme a seção 4) e manter a segurança da plataforma. Não vendemos seus dados pessoais.</p>
       </section>
       <section>
         <h2>4. Uso de dados de saúde e publicidade</h2>
