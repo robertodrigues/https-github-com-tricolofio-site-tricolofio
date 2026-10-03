@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Monjaro from "./pages/Monjaro";
 import PosParto from "./pages/PosParto";
+import QuedaCapilarPosEmagrecimento from "./pages/QuedaCapilarPosEmagrecimento";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import NotFound from "./pages/NotFound";
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/queda-monjaro" element={<Monjaro />} />
           <Route path="/queda-pos-parto" element={<PosParto />} />
+          <Route path="/queda-capilar-pos-emagrecimento" element={<QuedaCapilarPosEmagrecimento />} />
           <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
           <Route path="/termos-de-uso" element={<TermsOfUse />} />
           <Route path="*" element={<NotFound />} />
