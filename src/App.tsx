@@ -10,6 +10,7 @@ import QuedaCapilarPosEmagrecimento from "./pages/QuedaCapilarPosEmagrecimento";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import NotFound from "./pages/NotFound";
+import { WhatsAppFloatingButton } from "./components/WhatsAppFloatingButton";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/termos-de-uso" element={<TermsOfUse />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <WhatsAppFloatingButton />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

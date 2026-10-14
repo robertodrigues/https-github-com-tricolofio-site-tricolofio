@@ -15,6 +15,7 @@ import {
   UserRound,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { WHATSAPP_NUMBER, directWhatsAppUrl, trackDirectWhatsAppClick } from "@/lib/whatsapp";
 
 type Stage = "landing" | "quiz" | "processing" | "result";
 type Answer = string;
@@ -200,7 +201,7 @@ ${result.description}
 
 Gostaria de agendar minha consulta.`;
 
-  const whatsappUrl = `https://wa.me/5561993971572?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     whatsappMessage,
   )}`;
 
@@ -502,12 +503,12 @@ Gostaria de agendar minha consulta.`;
             <span>Explore</span>
             <a href="#top">Início</a>
             <button onClick={startQuiz}>Avaliação Educativa</button>
-            <a href={whatsappUrl} target="_blank" rel="noreferrer">Fale conosco</a>
+            <a href={directWhatsAppUrl} target="_blank" rel="noreferrer" onClick={() => trackDirectWhatsAppClick("rodape")}>Fale conosco</a>
           </div>
           <div className="footer-column">
             <span>Atendimento</span>
             <p>Quadra QR 2 Módulo 1 Sala 104 - Candangolândia,<br />Brasília - DF, 71725-211</p>
-            <a href="tel:+5561982520582">(61) 9 8252-0582</a>
+            <a href={`tel:+${WHATSAPP_NUMBER}`}> (61) 9 8252-0582</a>
             <a href="mailto:contato@tricolofio.com.br">contato@tricolofio.com.br</a>
           </div>
         </div>

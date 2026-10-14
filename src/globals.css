@@ -73,6 +73,8 @@ em { color:#2f7d68; font-family:'Poppins', sans-serif; font-weight:500; }
 .cta-card h3 { color:#2c554a; font-size:16px; font-weight:700; }
 .cta-card p { margin-top:4px; color:#6c857b; font-size:12px; line-height:1.5; }
 .whatsapp-button { display:inline-flex; align-items:center; justify-content:center; gap:9px; flex:none; border-radius:999px; padding:15px 19px; color:#fff; background:#218c57; font-size:13px; font-weight:700; box-shadow:0 8px 18px rgba(33,140,87,.18); }
+.whatsapp-floating { position:fixed; right:20px; bottom:84px; z-index:40; display:flex; align-items:center; gap:9px; border-radius:999px; padding:13px 17px; color:#fff; background:#25d366; box-shadow:0 8px 24px rgba(24,104,62,.28); font-size:13px; font-weight:700; transition:transform .2s, box-shadow .2s; }
+.whatsapp-floating:hover { transform:translateY(-2px); box-shadow:0 11px 28px rgba(24,104,62,.35); }
 .disclaimer { display:flex; align-items:center; justify-content:center; gap:5px; margin-top:18px; color:#9aac9f; font-size:10px; text-align:center; }
 .restart-link { display:block; margin:17px auto 0; border:0; color:#5f8878; background:transparent; font-size:12px; text-decoration:underline; }
 .site-footer { margin-top:0; padding:56px 20px 22px; color:#dcebe0; background:#173f36; }
