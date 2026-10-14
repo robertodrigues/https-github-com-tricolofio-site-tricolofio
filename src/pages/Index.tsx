@@ -483,7 +483,7 @@ Gostaria de agendar minha consulta.`;
         </section>
       )}
 
-      <div className="footer-since">Desde de 2013</div><footer className="site-footer">
+      <div className="footer-since"><span className="footer-medal" aria-hidden="true">🏅</span><span>Desde de 2013</span></div><footer className="site-footer">
         <div className="footer-inner">
           <div className="footer-brand">
             <img src="/logo-tricolofio.png" alt="Tricolofio Tricologia" />
