@@ -1,0 +1,18 @@
+import { useEffect, useState } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+
+const photos = [
+  { src: "/microagulhamento-3.jpg", position: "50% 50%", alt: "Comparativo de evolução capilar" },
+  { src: "/microagulhamento-4.jpg", position: "50% 50%", alt: "Detalhe do couro cabeludo" },
+  { src: "/microagulhamento-2.jpg", position: "18% 50%", alt: "Análise da densidade capilar" },
+  { src: "/microagulhamento-5.png", position: "50% 50%", alt: "Acompanhamento da densidade capilar" },
+];
+
+export default function MicroagulhamentoSection() {
+  const [top, setTop] = useState(0);
+  const [bottom, setBottom] = useState(0);
+  useEffect(() => { const timer = window.setInterval(() => { setTop((value) => (value + 1) % 2); setBottom((value) => (value + 1) % 2); }, 5000); return () => window.clearInterval(timer); }, []);
+  const controls = (value: number, setValue: (value: number) => void) => <div className="micro-carousel-controls"><span className="micro-dots">{[0, 1].map((index) => <button key={index} aria-label={`Ver foto ${index + 1}`} className={index === value ? "active" : ""} onClick={() => setValue(index)} />)}</span><span className="micro-arrows"><button onClick={() => setValue((value + 1) % 2)} aria-label="Próxima foto"><ArrowLeft size={17} /></button><button onClick={() => setValue((value + 1) % 2)} aria-label="Próxima foto"><ArrowRight size={17} /></button></span></div>;
+  const carousel = (index: number, setIndex: (value: number) => void, label: string) => <article className="micro-carousel-card"><div className="micro-image-wrap"><img src={photos[index + (label === "top" ? 0 : 2)].src} alt={photos[index + (label === "top" ? 0 : 2)].alt} style={{ objectPosition: photos[index + (label === "top" ? 0 : 2)].position }} /><div className="micro-image-overlay"><span>Microagulhamento capilar</span><span>0{index + 1} / 02</span></div></div>{controls(index, setIndex)}</article>;
+  return <section className="micro-section"><div className="micro-container"><article className="micro-copy-card"><span className="card-label">Tratamento direcionado</span><h2>Microagulhamento <em>Capilar</em></h2><p className="micro-lead">Um estímulo direcionado às áreas de falhas capilares.</p><div className="micro-text"><p>O microagulhamento capilar é um procedimento utilizado para estimular o crescimento dos fios nas regiões que apresentam falhas decorrentes da perda capilar.</p><p>Por meio de microperfurações controladas no couro cabeludo, a técnica estimula respostas biológicas locais e também pode ser associada ao drug delivery, favorecendo a entrega de ativos selecionados para auxiliar no tratamento e no estímulo ao crescimento dos fios.</p><p>E apesar de envolver agulhas, o procedimento costuma ser bem tolerado. A sensibilidade varia de pessoa para pessoa, mas, de modo geral, o desconforto é leve e passageiro.</p><p>Os primeiros resultados podem começar a ser percebidos a partir da 4ª sessão, dependendo da resposta individual ao tratamento.</p><p><strong>Quantas sessões serão necessárias? Essa resposta começa na avaliação.</strong></p><p>Durante a consulta, avalio a região com falha e as condições do couro cabeludo para definir um planejamento individualizado.</p></div></article><div className="micro-carousel-stack">{carousel(top, setTop, "top")}{carousel(bottom, setBottom, "bottom")}</div></div></section>;
+}
