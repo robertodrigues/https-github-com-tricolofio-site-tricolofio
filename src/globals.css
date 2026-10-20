@@ -87,6 +87,8 @@ em { color:#2f7d68; font-family:'Poppins', sans-serif; font-weight:500; }
 .micro-text { display:grid; gap:15px; margin-top:25px; color:#607970; font-size:13px; line-height:1.8; }
 .micro-text strong { color:#2d6454; font-weight:700; }
 .micro-carousel-card { padding:10px; background:#e4eee2; }
+.micro-carousel-card-top { border-radius:30px 30px 0 0; }
+.micro-carousel-card-bottom { margin-top:-24px; border-top:0; border-radius:0 0 30px 30px; box-shadow:0 18px 45px rgba(43,76,61,.07); }
 .micro-image-wrap { position:relative; aspect-ratio:1 / 1; width:100%; overflow:hidden; border-radius:23px; background:#d8e5d6; }
 .micro-image-wrap img { width:100%; height:100%; object-fit:cover; animation:micro-fade .45s ease both; }
 .micro-image-overlay { position:absolute; right:14px; bottom:14px; left:14px; display:flex; justify-content:space-between; gap:10px; padding:12px 14px; border-radius:14px; color:#fff; background:rgba(24,60,53,.75); backdrop-filter:blur(8px); font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
