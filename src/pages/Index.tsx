@@ -543,7 +543,7 @@ Gostaria de agendar minha consulta.`;
           <article className="micro-carousel-card micro-carousel-card-bottom" aria-label="Mais fotos do microagulhamento capilar">
             <div className="micro-image-wrap">
               <img key={microPhotoIndexBottom} src={bottomPhotos[microPhotoIndexBottom].src} alt={bottomPhotos[microPhotoIndexBottom].alt} style={{ objectPosition: bottomPhotos[microPhotoIndexBottom].position }} />
-              <div className="micro-image-overlay"><span>Resultados e acompanhamento</span><span>0{microPhotoIndexBottom + 1} / 02</span></div>
+              <div className="micro-image-overlay"><span>Microagulhamento capilar</span><span>0{microPhotoIndexBottom + 1} / 02</span></div>
             </div>
             <div className="micro-carousel-controls">
               <span className="micro-dots" aria-label="Selecionar foto">
