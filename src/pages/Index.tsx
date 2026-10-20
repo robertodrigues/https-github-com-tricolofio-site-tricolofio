@@ -525,9 +525,6 @@ Gostaria de agendar minha consulta.`;
               <p>Durante a consulta, avalio a região com falha, suas características e as condições do couro cabeludo para definir se o microagulhamento é indicado e estabelecer um planejamento individualizado, incluindo a estimativa de sessões.</p>
               <p>Cada área de falha tem suas particularidades. Por isso, o tratamento precisa respeitar as condições de cada região e o potencial de resposta dos folículos.</p>
               <p>O primeiro passo para tratar uma falha capilar é entender o que aquela região precisa.</p>
-              <p>O microagulhamento não é realizado de forma padronizada. A profundidade, a intensidade e a associação com outros recursos são definidas de acordo com a avaliação do couro cabeludo e com o objetivo de cada tratamento.</p>
-              <p>Ao longo do acompanhamento, observo a resposta da região e a evolução dos fios para ajustar o planejamento sempre que necessário. Esse cuidado permite que cada etapa seja conduzida de maneira individualizada e segura.</p>
-              <p>Mais do que estimular o crescimento, o tratamento busca respeitar o ciclo dos fios e criar as melhores condições possíveis para a resposta dos folículos. Por isso, a avaliação é essencial antes de iniciar qualquer procedimento.</p>
             </div>
           </article>
           <div className="micro-carousel-stack">
