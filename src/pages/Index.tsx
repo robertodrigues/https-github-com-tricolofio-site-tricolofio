@@ -527,6 +527,7 @@ Gostaria de agendar minha consulta.`;
               <p>O primeiro passo para tratar uma falha capilar é entender o que aquela região precisa.</p>
             </div>
           </article>
+          <div className="micro-carousel-stack">
           <article className="micro-carousel-card micro-carousel-card-top" aria-label="Fotos do microagulhamento capilar">
             <div className="micro-image-wrap">
               <img key={microPhotoIndex} src={topPhotos[microPhotoIndex].src} alt={topPhotos[microPhotoIndex].alt} style={{ objectPosition: topPhotos[microPhotoIndex].position }} />
@@ -551,6 +552,7 @@ Gostaria de agendar minha consulta.`;
               <span className="micro-arrows"><button onClick={() => changeMicroPhotoBottom(-1)} aria-label="Foto anterior"><ArrowLeft size={17} /></button><button onClick={() => changeMicroPhotoBottom(1)} aria-label="Próxima foto"><ArrowRight size={17} /></button></span>
             </div>
           </article>
+          </div>
         </div>
       </section>
 
