@@ -206,10 +206,10 @@ Gostaria de agendar minha consulta.`;
   )}`;
 
   const microagulhamentoPhotos = [
-    { src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1000&q=85", alt: "Cuidado capilar em ambiente clínico" },
-    { src: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1000&q=85", alt: "Profissional realizando avaliação" },
-    { src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1000&q=85", alt: "Tratamento estético especializado" },
-    { src: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1000&q=85", alt: "Rotina de cuidado e bem-estar" },
+    { src: "/microagulhamento-1.jpg", position: "50% 18%", alt: "Avaliação de falha capilar" },
+    { src: "/microagulhamento-1.jpg", position: "50% 82%", alt: "Detalhe do couro cabeludo" },
+    { src: "/microagulhamento-2.jpg", position: "18% 50%", alt: "Análise da densidade capilar" },
+    { src: "/microagulhamento-2.jpg", position: "82% 50%", alt: "Região capilar em avaliação" },
   ];
   const [microPhotoIndex, setMicroPhotoIndex] = useState(0);
 
@@ -521,7 +521,7 @@ Gostaria de agendar minha consulta.`;
           </article>
           <article className="micro-carousel-card" aria-label="Fotos do microagulhamento capilar">
             <div className="micro-image-wrap">
-              <img key={microPhotoIndex} src={microagulhamentoPhotos[microPhotoIndex].src} alt={microagulhamentoPhotos[microPhotoIndex].alt} />
+              <img key={microPhotoIndex} src={microagulhamentoPhotos[microPhotoIndex].src} alt={microagulhamentoPhotos[microPhotoIndex].alt} style={{ objectPosition: microagulhamentoPhotos[microPhotoIndex].position }} />
               <div className="micro-image-overlay"><span>Microagulhamento capilar</span><span>0{microPhotoIndex + 1} / 04</span></div>
             </div>
             <div className="micro-carousel-controls">
