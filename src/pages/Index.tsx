@@ -209,7 +209,7 @@ Gostaria de agendar minha consulta.`;
     { src: "/microagulhamento-3.jpg", position: "50% 50%", alt: "Comparativo de evolução capilar" },
     { src: "/microagulhamento-4.jpg", position: "50% 50%", alt: "Detalhe do couro cabeludo" },
     { src: "/microagulhamento-2.jpg", position: "18% 50%", alt: "Análise da densidade capilar" },
-    { src: "/microagulhamento-2.jpg", position: "82% 50%", alt: "Região capilar em avaliação" },
+    { src: "/microagulhamento-5.png", position: "50% 50%", alt: "Acompanhamento da densidade capilar" },
   ];
   const [microPhotoIndex, setMicroPhotoIndex] = useState(0);
   const [microPhotoIndexBottom, setMicroPhotoIndexBottom] = useState(0);
