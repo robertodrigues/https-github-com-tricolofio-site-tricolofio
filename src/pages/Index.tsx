@@ -205,6 +205,25 @@ Gostaria de agendar minha consulta.`;
     whatsappMessage,
   )}`;
 
+  const microagulhamentoPhotos = [
+    { src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1000&q=85", alt: "Cuidado capilar em ambiente clínico" },
+    { src: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1000&q=85", alt: "Profissional realizando avaliação" },
+    { src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1000&q=85", alt: "Tratamento estético especializado" },
+    { src: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1000&q=85", alt: "Rotina de cuidado e bem-estar" },
+  ];
+  const [microPhotoIndex, setMicroPhotoIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setMicroPhotoIndex((current) => (current + 1) % microagulhamentoPhotos.length);
+    }, 5000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const changeMicroPhoto = (direction: number) => {
+    setMicroPhotoIndex((current) => (current + direction + microagulhamentoPhotos.length) % microagulhamentoPhotos.length);
+  };
+
   return (
     <main className="min-h-screen bg-[#fbfaf6] text-[#183c35] selection:bg-[#dcece2]">
       <header className="absolute left-0 right-0 top-0 z-10 mx-auto flex max-w-6xl items-center justify-between px-5 py-6 lg:px-10">
@@ -482,6 +501,38 @@ Gostaria de agendar minha consulta.`;
           </div>
         </section>
       )}
+
+      <section className="micro-section" aria-labelledby="microagulhamento-title">
+        <div className="micro-container">
+          <article className="micro-copy-card">
+            <span className="card-label">Tratamento direcionado</span>
+            <h2 id="microagulhamento-title">Microagulhamento <em>Capilar</em></h2>
+            <p className="micro-lead">Um estímulo direcionado às áreas de falhas capilares.</p>
+            <div className="micro-text">
+              <p>O microagulhamento capilar é um procedimento utilizado para estimular o crescimento dos fios nas regiões que apresentam falhas decorrentes da perda capilar.</p>
+              <p>Por meio de microperfurações controladas no couro cabeludo, a técnica estimula respostas biológicas locais e também pode ser associada ao drug delivery, favorecendo a entrega de ativos selecionados para auxiliar no tratamento e no estímulo ao crescimento dos fios.</p>
+              <p>E apesar de envolver agulhas, o procedimento costuma ser bem tolerado. A sensibilidade varia de pessoa para pessoa, mas, de modo geral, o desconforto é leve e passageiro.</p>
+              <p>Os primeiros resultados podem começar a ser percebidos a partir da 4ª sessão, dependendo da resposta individual ao tratamento. No entanto, a evolução está diretamente relacionada às características da área afetada, à condição responsável pela falha e ao grau de comprometimento dos folículos.</p>
+              <p><strong>Quantas sessões serão necessárias? Essa resposta começa na avaliação.</strong></p>
+              <p>Durante a consulta, avalio a região com falha, suas características e as condições do couro cabeludo para definir se o microagulhamento é indicado e estabelecer um planejamento individualizado, incluindo a estimativa de sessões.</p>
+              <p>Cada área de falha tem suas particularidades. Por isso, o tratamento precisa respeitar as condições de cada região e o potencial de resposta dos folículos.</p>
+              <p>O primeiro passo para tratar uma falha capilar é entender o que aquela região precisa.</p>
+            </div>
+          </article>
+          <article className="micro-carousel-card" aria-label="Fotos do microagulhamento capilar">
+            <div className="micro-image-wrap">
+              <img key={microPhotoIndex} src={microagulhamentoPhotos[microPhotoIndex].src} alt={microagulhamentoPhotos[microPhotoIndex].alt} />
+              <div className="micro-image-overlay"><span>Microagulhamento capilar</span><span>0{microPhotoIndex + 1} / 04</span></div>
+            </div>
+            <div className="micro-carousel-controls">
+              <span className="micro-dots" aria-label="Selecionar foto">
+                {microagulhamentoPhotos.map((photo, index) => <button key={photo.src} aria-label={`Ver foto ${index + 1}`} className={index === microPhotoIndex ? "active" : ""} onClick={() => setMicroPhotoIndex(index)} />)}
+              </span>
+              <span className="micro-arrows"><button onClick={() => changeMicroPhoto(-1)} aria-label="Foto anterior"><ArrowLeft size={17} /></button><button onClick={() => changeMicroPhoto(1)} aria-label="Próxima foto"><ArrowRight size={17} /></button></span>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <div className="footer-since-container">Desde de 2013</div><footer className="site-footer">
         <div className="footer-inner">
