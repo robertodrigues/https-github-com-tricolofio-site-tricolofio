@@ -206,8 +206,8 @@ Gostaria de agendar minha consulta.`;
   )}`;
 
   const microagulhamentoPhotos = [
-    { src: "/microagulhamento-1.jpg", position: "50% 18%", alt: "Avaliação de falha capilar" },
-    { src: "/microagulhamento-1.jpg", position: "50% 82%", alt: "Detalhe do couro cabeludo" },
+    { src: "/microagulhamento-3.jpg", position: "50% 50%", alt: "Comparativo de evolução capilar" },
+    { src: "/microagulamento-1.jpg", position: "50% 18%", alt: "Avaliação de falha capilar" },
     { src: "/microagulhamento-2.jpg", position: "18% 50%", alt: "Análise da densidade capilar" },
     { src: "/microagulhamento-2.jpg", position: "82% 50%", alt: "Região capilar em avaliação" },
   ];
