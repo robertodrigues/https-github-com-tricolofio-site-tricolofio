@@ -212,16 +212,24 @@ Gostaria de agendar minha consulta.`;
     { src: "/microagulhamento-2.jpg", position: "82% 50%", alt: "Região capilar em avaliação" },
   ];
   const [microPhotoIndex, setMicroPhotoIndex] = useState(0);
+  const [microPhotoIndexBottom, setMicroPhotoIndexBottom] = useState(0);
+  const topPhotos = microagulhamentoPhotos.slice(0, 2);
+  const bottomPhotos = microagulhamentoPhotos.slice(2, 4);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setMicroPhotoIndex((current) => (current + 1) % microagulhamentoPhotos.length);
+      setMicroPhotoIndex((current) => (current + 1) % topPhotos.length);
+      setMicroPhotoIndexBottom((current) => (current + 1) % bottomPhotos.length);
     }, 5000);
     return () => window.clearInterval(timer);
   }, []);
 
   const changeMicroPhoto = (direction: number) => {
-    setMicroPhotoIndex((current) => (current + direction + microagulhamentoPhotos.length) % microagulhamentoPhotos.length);
+    setMicroPhotoIndex((current) => (current + direction + topPhotos.length) % topPhotos.length);
+  };
+
+  const changeMicroPhotoBottom = (direction: number) => {
+    setMicroPhotoIndexBottom((current) => (current + direction + bottomPhotos.length) % bottomPhotos.length);
   };
 
   return (
@@ -521,14 +529,26 @@ Gostaria de agendar minha consulta.`;
           </article>
           <article className="micro-carousel-card" aria-label="Fotos do microagulhamento capilar">
             <div className="micro-image-wrap">
-              <img key={microPhotoIndex} src={microagulhamentoPhotos[microPhotoIndex].src} alt={microagulhamentoPhotos[microPhotoIndex].alt} style={{ objectPosition: microagulhamentoPhotos[microPhotoIndex].position }} />
-              <div className="micro-image-overlay"><span>Microagulhamento capilar</span><span>0{microPhotoIndex + 1} / 04</span></div>
+              <img key={microPhotoIndex} src={topPhotos[microPhotoIndex].src} alt={topPhotos[microPhotoIndex].alt} style={{ objectPosition: topPhotos[microPhotoIndex].position }} />
+              <div className="micro-image-overlay"><span>Microagulhamento capilar</span><span>0{microPhotoIndex + 1} / 02</span></div>
             </div>
             <div className="micro-carousel-controls">
               <span className="micro-dots" aria-label="Selecionar foto">
-                {microagulhamentoPhotos.map((photo, index) => <button key={photo.src} aria-label={`Ver foto ${index + 1}`} className={index === microPhotoIndex ? "active" : ""} onClick={() => setMicroPhotoIndex(index)} />)}
+                {topPhotos.map((photo, index) => <button key={photo.src + index} aria-label={`Ver foto ${index + 1}`} className={index === microPhotoIndex ? "active" : ""} onClick={() => setMicroPhotoIndex(index)} />)}
               </span>
               <span className="micro-arrows"><button onClick={() => changeMicroPhoto(-1)} aria-label="Foto anterior"><ArrowLeft size={17} /></button><button onClick={() => changeMicroPhoto(1)} aria-label="Próxima foto"><ArrowRight size={17} /></button></span>
+            </div>
+          </article>
+          <article className="micro-carousel-card micro-carousel-card-bottom" aria-label="Mais fotos do microagulhamento capilar">
+            <div className="micro-image-wrap">
+              <img key={microPhotoIndexBottom} src={bottomPhotos[microPhotoIndexBottom].src} alt={bottomPhotos[microPhotoIndexBottom].alt} style={{ objectPosition: bottomPhotos[microPhotoIndexBottom].position }} />
+              <div className="micro-image-overlay"><span>Resultados e acompanhamento</span><span>0{microPhotoIndexBottom + 1} / 02</span></div>
+            </div>
+            <div className="micro-carousel-controls">
+              <span className="micro-dots" aria-label="Selecionar foto">
+                {bottomPhotos.map((photo, index) => <button key={photo.src + index} aria-label={`Ver foto ${index + 1}`} className={index === microPhotoIndexBottom ? "active" : ""} onClick={() => setMicroPhotoIndexBottom(index)} />)}
+              </span>
+              <span className="micro-arrows"><button onClick={() => changeMicroPhotoBottom(-1)} aria-label="Foto anterior"><ArrowLeft size={17} /></button><button onClick={() => changeMicroPhotoBottom(1)} aria-label="Próxima foto"><ArrowRight size={17} /></button></span>
             </div>
           </article>
         </div>

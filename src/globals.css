@@ -135,6 +135,7 @@ em { color:#2f7d68; font-family:'Poppins', sans-serif; font-weight:500; }
   .micro-container { grid-template-columns:1.12fr .88fr; align-items:stretch; }
   .micro-copy-card { padding:42px 40px; }
   .micro-image-wrap { height:auto; min-height:0; }
+  .micro-carousel-card-bottom { grid-column:2; }
   .result-grid { grid-template-columns:.9fr 1.1fr; }
   .profile-card, .timeline-card { padding:30px; }
   .footer-inner { grid-template-columns:1.4fr .7fr 1fr; gap:70px; }
